@@ -1,6 +1,6 @@
 %%%%%%%%% PARAMETER CONTROL %%%%%%%%%
-HighMovementEntropy = 0;        % 1 for high entropy, 0 for low entropy
-gamma = 0.80;                   % discount factor
+PolarisedProbabilities = 1;     % 1 for polarised probabilities, 0 otherwise
+gamma = 0.90;                   % discount factor
 PlotLenVsCost = 0;              % 1 to plot mean cost vs. path length
 %%%%%%% END PARAMETER CONTROL %%%%%%%
 
@@ -21,7 +21,7 @@ P = [40 30 0 0 30;
      40 30 30 0 0;
      40 20 20 20 0;
      100 0 0 0 0]/100;
-if HighMovementEntropy == 0
+if PolarisedProbabilities == 1
     P = [10 80 0 0 10;
          6 80 0 6 8;
          10 0 0 10 80;
@@ -191,10 +191,10 @@ if PlotLenVsCost == 1
 	set(gca,'xticklabel',xlabels)
     xlabel('Path length');
     ylabel('Mean cost');
-    if HighMovementEntropy == 0
-        title('Infinite horizon, low movement entropy');
+    if PolarisedProbabilities == 0
+        title('Infinite horizon, Scenario 2.1');
     else
-        title('Infinite horizon, high movement entropy');
+        title('Infinite horizon, Scenario 2.2 (polarised probabilities)');
     end
 else
     plot(cost(:,2),'^-');
@@ -207,9 +207,9 @@ else
     set(gca,'xticklabel',xlabels)
     xlabel('Caching algorithm');
     ylabel('Mean cost');
-    if HighMovementEntropy == 0
-        title('Infinite horizon, low movement entropy');
+    if PolarisedProbabilities == 0
+        title('Infinite horizon, Scenario 2.1');
     else
-        title('Infinite horizon, high movement entropy');
+        title('Infinite horizon, Scenario 2.2 (polarised probabilities)');
     end
 end

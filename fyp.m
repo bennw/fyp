@@ -1,5 +1,5 @@
 %%%%%%%%% PARAMETER CONTROL %%%%%%%%%
-HighMovementEntropy = 0;        % 1 for high entropy, 0 for low entropy
+PolarisedProbabilities = 1;     % 1 for polarised probabilities, 0 otherwise
 HighBuffer = 0;                 % 1 for high buffer, 0 for low buffer
 %%%%%%% END PARAMETER CONTROL %%%%%%%
 
@@ -27,7 +27,7 @@ P = [40 30 0 0 30;
      40 30 30 0 0;
      40 20 20 20 0;
      40 0 30 30 0]/100; % parameter p(i,j)
-if HighMovementEntropy == 0
+if PolarisedProbabilities == 1
     P = [10 80 0 0 10;
          6 80 0 6 8;
          10 0 0 10 80;
@@ -176,13 +176,13 @@ polyy = polyval(polycoeff, polyx);
 % end
 
 hold on
-%plot(alphaCcostDcost(:,2),'*-');
-%plot(alphaCcostDcost(:,3),'*-');
+%plot(cost(:,2),'*-');
+%plot(cost(:,3),'*-');
 plot(cost(:,2)+cost(:,3),'*-');
-legend('Scenario 1.1: low buffer, low movement entropy','Scenario 1.2: high buffer, high movement entropy','Scenario 1.3: low buffer, low movement entropy')
+legend('Scenario 1.1: low buffer','Scenario 1.2: high buffer','Scenario 1.3: low buffer, polarised probabilities')
 xlabels = {'reactive'; 'optimal'; 'pure proactive' };
 set(gca,'xtick',[1 2 3])
 set(gca,'xticklabel',xlabels)
 xlabel('Caching algorithm');
-ylabel('Mean caching cost');
+ylabel('Sum of mean caching and download costs');
 title('Finite horizon, total cost');
